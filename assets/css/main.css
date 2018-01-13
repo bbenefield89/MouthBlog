@@ -26,7 +26,7 @@ body {
         left: -170px;
         width: 300px; }
         body nav .dropdown .dropdown-menu.show input {
-          background: wheat;
+          background: #faffbd;
           color: #000;
           font-weight: 450; }
   body .index-page.container .row {
@@ -38,5 +38,7 @@ body {
       max-width: 450px; }
       body .index-page.container .row .col-10.offset-1 h1 {
         margin-bottom: 2em; }
+      body .index-page.container .row .col-10.offset-1 .form-control {
+        background: #faffbd; }
 
 /*# sourceMappingURL=main.css.map */
