@@ -25,6 +25,7 @@ nav {
       width: 300px; }
       nav .dropdown .dropdown-menu.show input {
         background: wheat;
+        color: #000;
         font-weight: 450; }
 
 /*# sourceMappingURL=header.css.map */
