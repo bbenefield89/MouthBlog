@@ -26,7 +26,8 @@ body {
         left: -170px;
         width: 300px; }
         body nav .dropdown .dropdown-menu.show input {
-          background: wheat; }
+          background: wheat;
+          font-weight: 450; }
   body .index-page.container .row {
     display: flex;
     align-items: center;
