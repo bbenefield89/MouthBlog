@@ -7,5 +7,7 @@
     max-width: 450px; }
     .index-page.container .row .col-10.offset-1 h1 {
       margin-bottom: 2em; }
+    .index-page.container .row .col-10.offset-1 .form-control {
+      background: #faffbd; }
 
 /*# sourceMappingURL=index.css.map */
