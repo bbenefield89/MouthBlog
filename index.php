@@ -39,7 +39,7 @@ include('includes/header.php');
           <input class="form-control form-control-lg" type="password" name="password" placeholder="Password">
         </div>
         
-        <input class="btn btn-success float-right" type="submit" name="create_account" value="Create Account">
+        <button class="btn btn-lg float-right" type="submit" name="create_account">Create Account</button>
       </form>
       
     </section>

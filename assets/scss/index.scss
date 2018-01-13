@@ -10,11 +10,19 @@
       max-width: 450px;
       
       h1 {
+        color: #fff;
         margin-bottom: 2em;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
       }
       
       .form-control {
-        background: #faffbd;
+        background: #edf5e1;
+      }
+      
+      button {
+        background: #05386b;
+        color: #edf5e1;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 1);
       }
     }
   }
