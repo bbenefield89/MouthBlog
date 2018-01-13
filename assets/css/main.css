@@ -26,7 +26,7 @@ body {
         left: -170px;
         width: 300px; }
         body nav .dropdown .dropdown-menu.show input {
-          background: #faffbd;
+          background: #edf5e1;
           color: #000;
           font-weight: 450; }
   body .index-page.container .row {
@@ -37,8 +37,14 @@ body {
       margin: 0 auto;
       max-width: 450px; }
       body .index-page.container .row .col-10.offset-1 h1 {
-        margin-bottom: 2em; }
+        color: #fff;
+        margin-bottom: 2em;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3); }
       body .index-page.container .row .col-10.offset-1 .form-control {
-        background: #faffbd; }
+        background: #edf5e1; }
+      body .index-page.container .row .col-10.offset-1 button {
+        background: #05386b;
+        color: #edf5e1;
+        text-shadow: 0 0 5px black; }
 
 /*# sourceMappingURL=main.css.map */
