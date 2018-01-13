@@ -1,0 +1,18 @@
+nav {
+  
+  .dropdown {
+    display: inline-block;
+    margin: 0 20% 0 auto;
+    
+    .dropdown-toggle {
+      background: transparent;
+    }
+    
+    .dropdown-menu.show {
+      padding: 10px;
+      position: absolute;
+      left: -150px;
+      width: 300px;
+    }
+  }
+}

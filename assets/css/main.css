@@ -1,0 +1,12 @@
+nav .dropdown {
+  display: inline-block;
+  margin: 0 20% 0 auto; }
+  nav .dropdown .dropdown-toggle {
+    background: transparent; }
+  nav .dropdown .dropdown-menu.show {
+    padding: 10px;
+    position: absolute;
+    left: -150px;
+    width: 300px; }
+
+/*# sourceMappingURL=main.css.map */
