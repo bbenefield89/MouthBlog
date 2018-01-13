@@ -1,0 +1,17 @@
+.index-page.container {
+  
+  .row {
+    display: flex;
+    align-items: center;
+    height: 70vh;
+    
+    .col-10.offset-1 {
+      margin: 0 auto;
+      max-width: 450px;
+      
+      h1 {
+        margin-bottom: 2em;
+      }
+    }
+  }
+}
