@@ -1,2 +1,6 @@
-@import 'header';
-@import 'index';
+body {
+  background: #5cdb95;
+  
+  @import 'header';
+  @import 'index';
+}

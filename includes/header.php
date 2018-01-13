@@ -15,10 +15,10 @@
   </head>
   <body>
     
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-      <a class="navbar-brand" href="#">Mouth Blog</a>
+    <nav class="navbar navbar-expand-md navbar-light">
+      <a class="navbar-brand mx-auto" href="#"><span>Mouth</span> <span>Blog</span></a>
 
-        <div class="dropdown">
+        <div class="dropdown mx-auto">
           <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Log in
           </button>

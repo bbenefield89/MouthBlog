@@ -1,18 +1,43 @@
 nav {
+  background: #05386b;
+  margin-bottom: 2em;
+  
+  .navbar-brand {
+    color: #fff !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    span {
+      
+      &:first-child {
+        width: 100%;
+      }
+    }
+  }
   
   .dropdown {
     display: inline-block;
-    margin: 0 20% 0 auto;
+    margin: 0 auto;
     
     .dropdown-toggle {
       background: transparent;
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 300;
     }
     
     .dropdown-menu.show {
+      background: #5cdb95;
+      box-shadow: 0 0 15px;
       padding: 10px;
       position: absolute;
-      left: -150px;
+      left: -170px;
       width: 300px;
+      
+      input {
+        background: wheat;
+      }
     }
   }
 }
