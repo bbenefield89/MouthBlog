@@ -27,6 +27,7 @@ body {
         width: 300px; }
         body nav .dropdown .dropdown-menu.show input {
           background: wheat;
+          color: #000;
           font-weight: 450; }
   body .index-page.container .row {
     display: flex;
