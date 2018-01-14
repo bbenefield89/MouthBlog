@@ -31,7 +31,7 @@
               <div class="form-group">
                 <input class="form-control from-control-lg" type="text" name="password" placeholder="Email Address">
               </div>
-              <button class="btn btn-primary" type="submit" name="login_button">Log in</button>
+              <button class="btn" type="submit" name="login_button">Log in</button>
             </form>
           </div>
         </div>
