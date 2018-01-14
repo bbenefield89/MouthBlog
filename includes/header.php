@@ -25,11 +25,11 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <form action="<?php htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, 'ISO-8859-15'); ?>" method="POST">
               <div class="form-group">
-                <input class="form-control from-control-lg" type="text" name="email" placeholder="Email Address">
+                <input class="form-control from-control-lg" type="text" name="login_email" placeholder="Email Address">
               </div>
               
               <div class="form-group">
-                <input class="form-control from-control-lg" type="text" name="password" placeholder="Email Address">
+                <input class="form-control from-control-lg" type="text" name="login_password" placeholder="Email Address">
               </div>
               <button class="btn" type="submit" name="login_button">Log in</button>
             </form>
