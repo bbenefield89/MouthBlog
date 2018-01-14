@@ -1,12 +1,10 @@
 <?php
 
-// session_start();
+session_start();
 
-// if (!isset($_SESSION['email'])) {
-//   header('Location: index.php');
-// } else {
-//   echo 'Welcome to your blog roll';
-// }
+if (!isset($_SESSION['email'])) {
+  header('Location: index.php');
+}
 
 include('includes/header.php');
 
