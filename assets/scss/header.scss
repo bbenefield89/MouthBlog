@@ -1,9 +1,9 @@
 nav {
-  background: #05386b;
+  background: $navyBlue;
   margin-bottom: 2em;
   
   .navbar-brand {
-    color: #fff !important;
+    color: $marshmallow !important;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -22,13 +22,13 @@ nav {
     
     .dropdown-toggle {
       background: transparent;
-      color: #fff;
+      color: $marshmallow;
       font-size: 1.25rem;
       font-weight: 300;
     }
     
     .dropdown-menu.show {
-      background: #5cdb95;
+      background: $lightGreen;
       box-shadow: 0 0 15px;
       padding: 10px;
       position: absolute;
@@ -36,14 +36,14 @@ nav {
       width: 300px;
       
       input {
-        background: #edf5e1;
+        background: $marshmallow;
         color: #000;
         font-weight: 450;
       }
       
       button {
-        background: #05386b;
-        color: #edf5e1;
+        background: $navyBlue;
+        color: $marshmallow;
         text-shadow: 0 0 5px rgba(0, 0, 0, 1);
       }
     }

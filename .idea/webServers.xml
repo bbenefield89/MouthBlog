@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="98a75c37-69b6-4d46-a5b4-d4db01893ea7" name="mouthblog" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="C:\Users\Brandork\Documents\sites\mouthblog" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

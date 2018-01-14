@@ -1,6 +1,9 @@
+@import 'variables';
+
 body {
-  background: #5cdb95;
+  background: $lightGreen;
   
   @import 'header';
   @import 'index';
+  @import 'blog_roll';
 }

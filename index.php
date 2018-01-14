@@ -45,7 +45,7 @@ include('includes/header.php');
       
       <form action="<?php htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, 'ISO-8859-15'); ?>" method="POST">
         <div class="form-group">
-          <input class="form-control form-control-lg" type="name" name="name" placeholder="First Name">
+          <input class="form-control form-control-lg" type="text" name="name" placeholder="First Name">
         </div>
         
         <div class="form-group">

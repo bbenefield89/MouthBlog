@@ -4,7 +4,7 @@ body {
     background: #05386b;
     margin-bottom: 2em; }
     body nav .navbar-brand {
-      color: #fff !important;
+      color: #edf5e1 !important;
       display: flex;
       flex-wrap: wrap;
       justify-content: center; }
@@ -15,7 +15,7 @@ body {
       margin: 0 auto; }
       body nav .dropdown .dropdown-toggle {
         background: transparent;
-        color: #fff;
+        color: #edf5e1;
         font-size: 1.25rem;
         font-weight: 300; }
       body nav .dropdown .dropdown-menu.show {
@@ -50,5 +50,34 @@ body {
         background: #05386b;
         color: #edf5e1;
         text-shadow: 0 0 5px black; }
+  body .blog-roll .content-wrapper {
+    max-width: 1200px; }
+  body .blog-roll header h1,
+  body .blog-roll header p {
+    color: #edf5e1;
+    text-align: center; }
+  body .blog-roll header p {
+    color: #000; }
+  body .blog-roll header form button {
+    background: #05386b;
+    color: #edf5e1;
+    text-shadow: 0 1px #000;
+    width: 100%; }
+  body .blog-roll section {
+    background: #edf5e1;
+    border-top-left-radius: 50px;
+    box-shadow: -1px 0 5px; }
+    body .blog-roll section article {
+      border-radius: 3px;
+      box-shadow: 0 0 5px;
+      margin-bottom: 1.5rem;
+      padding: 15px; }
+  body .blog-roll aside {
+    background: #edf5e1;
+    border-top-right-radius: 50px;
+    box-shadow: 1px 0 5px;
+    padding-top: 43px; }
+    body .blog-roll aside hr {
+      width: 50%; }
 
 /*# sourceMappingURL=main.css.map */
