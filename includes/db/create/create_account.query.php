@@ -5,20 +5,15 @@ class CreateAccount extends Connection {
     $this->connect();
   }
   
-  public function create_account($username, $password) {
-    $sql = "INSERT INTO `users` (id, username, password) VALUES (NULL, :username, :password)";
+  public function create_account($name, $password, $email) {
+    $sql = "INSERT INTO `users` (id, name, password, email) VALUES (NULL, :name, :password, :email)";
     $query = $this->connect()->prepare($sql);
     $result = $query->execute(
       [
-        ':username' => $username,
-        ':password' => $password
+        ':name'     => $name,
+        ':password' => $password,
+        ':email'    => $email
       ]
     );
-    
-    if ($result) {
-      echo 'Woohoo';
-    } else {
-      echo 'Boooooo';
-    }
   }
 }
