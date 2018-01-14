@@ -1,7 +1,14 @@
 <?php
 
+session_start();
+
+if (isset($_SESSION['email'])) {
+  header('Location: blog_roll.php');
+}
+
 include('includes/db/connection.php');
 include('includes/db/create/create_account.query.php');
+include('includes/db/read/login.query.php');
 
 if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
   $name = htmlentities($_POST['name'], ENT_QUOTES, 'ISO-8859-15');
@@ -11,6 +18,15 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])
   
   $create_account->create_account($name, $password, $email);
   unset($create_account);
+}
+
+if (isset($_POST['login_email']) && isset($_POST['login_password'])) {
+  $email = htmlentities($_POST['login_email'], ENT_QUOTES, 'ISO-8859-15');
+  $password = htmlentities($_POST['login_password'], ENT_QUOTES, 'ISO-8859-15');
+  $login = new Login;
+  
+  $login->Login($email, $password);
+  unset($login);
 }
 
 ?>
