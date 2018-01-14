@@ -16,12 +16,12 @@
       }
       
       .form-control {
-        background: #edf5e1;
+        background: $marshmallow;
       }
       
       button {
-        background: #05386b;
-        color: #edf5e1;
+        background: $navyBlue;
+        color: $marshmallow;
         text-shadow: 0 0 5px rgba(0, 0, 0, 1);
       }
     }

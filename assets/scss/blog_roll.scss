@@ -1,0 +1,53 @@
+.blog-roll {
+  
+  .content-wrapper {
+    max-width: 1200px;
+  }
+  
+  header {
+    
+    h1,
+    p {
+      color: $marshmallow;
+      text-align: center;
+    }
+    
+    p {
+      color: #000;
+    }
+    
+    form {
+      
+      button {
+        background: $navyBlue;
+        color: $marshmallow;
+        text-shadow: 0 1px #000;
+        width: 100%;
+      }
+    }
+  }
+  
+  section {
+    background: $marshmallow;
+    border-top-left-radius: 50px;
+    box-shadow: -1px 0 5px;
+    
+    article {
+      border-radius: 3px;
+      box-shadow: 0 0 5px;
+      margin-bottom: 1.5rem;
+      padding: 15px;
+    }
+  }
+  
+  aside {
+    background: $marshmallow;
+    border-top-right-radius: 50px;
+    box-shadow: 1px 0 5px;
+    padding-top: 43px;
+    
+    hr {
+      width: 50%;
+    }
+  }
+}
