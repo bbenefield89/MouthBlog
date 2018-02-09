@@ -105,10 +105,7 @@
       <button class="btn btn-lg btn-success mb-3" name="submit_comment" type="submit">Add Comment</button>
     </form><!-- form -->
     
-    <!-- DYNAMICALLY GENERATED CONTENT -->
-    <div class="post-modal-comments-wrapper pl-3">
-      <!-- FILLED IN WITH JS -->
-    </div>
+    <!-- COMMENTS WILL BE DYNAMICALLY GENERATED AND PLACED HERE WITH JS/PHP -->
     
   </div><!-- inner modal -->
 </div><!-- outer modal -->
