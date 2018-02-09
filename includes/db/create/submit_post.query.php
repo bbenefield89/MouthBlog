@@ -4,8 +4,8 @@ class SubmitPost extends Connection {
   public function __construct($user_id, $user_name, $content) {
     $this->connect();
     
-    $sql    = "INSERT INTO `posts` (id, user_id, user_name, content, date_created)
-               VALUES (NULL, :user_id, :user_name, :content, CURRENT_TIMESTAMP)";
+    $sql    = "INSERT INTO `posts` (id, user_id, user_name, content, comment_count, heart_count, date_created)
+               VALUES (NULL, :user_id, :user_name, :content, 0, 0, CURRENT_TIMESTAMP)";
     $query  = $this->connect()->prepare($sql);
     $result = $query->execute(
       [

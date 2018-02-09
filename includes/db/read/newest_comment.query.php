@@ -1,11 +1,11 @@
 <?php
 
-class NewestPost extends Connection {
+class NewestComment extends Connection {
   public function __construct() {
     $this->connect();
     
-    $sql = "SELECT `id`, `user_id`, `user_name`, `content`,`comment_count`, `heart_count`, `date_created`
-            FROM `posts`
+    $sql = "SELECT `id`, `post_id`, `user_id`, `username`,`comment_content`, `date_created`
+            FROM `comments`
             ORDER BY `id` DESC
             LIMIT 1";
     $query = $this->connect()->prepare($sql);

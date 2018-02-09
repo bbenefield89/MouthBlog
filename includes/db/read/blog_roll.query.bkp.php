@@ -4,36 +4,9 @@ class BlogRoll extends Connection {
   public function __construct() {
     $this->connect();
     
-    $sql    = "SELECT
-                 `post_id`,
-                 `user_id`
-               FROM
-                 `hearted_posts`";
-    $query  = $this->connect()->prepare($sql);
-    $result = $query->execute();
-    $heart_post_array = [];
-    
-    if ($result) {
-      while ($row = $query->fetch(PDO::FETCH_OBJ)) {
-        array_push($heart_post_array, $row);
-      }
-    } else {
-      die('SOMETHING WENT WRONG WITH 1st QUERY');
-    }
-    
-    $sql    = "SELECT
-                 id,
-                 user_id,
-                 user_name,
-                 content,
-                 comment_count,
-                 heart_count,
-                 date_created
-               FROM
-                 posts
-               ORDER BY
-                 date_created
-               DESC";
+    $sql    = "SELECT `id`, `user_id`, `user_name`, `content`, `comment_count`, `heart_count`, `date_created`
+               FROM `posts`
+               ORDER BY `date_created` DESC";
     $query  = $this->connect()->prepare($sql);
     $result = $query->execute();
     
@@ -60,7 +33,6 @@ class BlogRoll extends Connection {
                     <form action="',htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, 'ISO-8859-15'),'" class="" method="POST">
                       <button class="btn btn-danger" name="delete_post" type="submit">DELETE</button>
                       <input id="delete-post-id" name="post_id" type="hidden" value="',$id,'">
-                      <input id="delete-post-user-id" name="user_id" type="hidden" value="',$user_id,'">
                     </form>
             ';
           }
@@ -75,24 +47,35 @@ class BlogRoll extends Connection {
           ';
           
           if ($heart_count > 0) {
-            $current_user_hearted = false;
+            $newSQL = "SELECT `post_id`, `user_id`
+                      FROM `hearted_posts`
+                        WHERE `post_id` = :post_id";
+            $newQuery = $this->connect()->prepare($newSQL);
+            $newResult = $newQuery->execute(
+              [
+                ':post_id'  => $id,
+              ]
+            );
             
-            foreach($heart_post_array as $heart) {
-              if ($heart->post_id === $id && $heart->user_id === $_SESSION['id']) {
-                $current_user_hearted = true;
-                
-                echo '<button class="heart-post-button liked" type="submit" name="heart_post_button"><i class="fas fa-heart fa-lg"></i></button>';
+            if (!$newResult) {
+              echo 'FAIL';
+            } else {
+              $row = $newQuery->fetch(PDO::FETCH_OBJ);
+              
+              if ($row->user_id === $_SESSION['id']) {
+                echo '
+                      <button class="heart-post-button liked" type="submit" name="heart_post_button"><i class="fas fa-heart fa-lg"></i></button>
+                ';
               }
             }
-            
-            if (!$current_user_hearted) {
-              echo '<button class="heart-post-button" type="submit" name="heart_post_button"><i class="fas fa-heart fa-lg"></i></button>';
-            }
           } else {
-              echo '<button class="heart-post-button" type="submit" name="heart_post_button"><i class="fas fa-heart fa-lg"></i></button>';
+            echo '
+                      <button class="heart-post-button" type="submit" name="heart_post_button"><i class="fas fa-heart fa-lg"></i></button>
+            ';
           }
-          
-          echo '      <small>',$heart_count,'</small>
+                  
+          echo '
+                      <small>',$heart_count,'</small>
                       <input name="heart_count" type="hidden" value="',$heart_count,'">
                       <input name="post_id" type="hidden" value="',$id,'">
                       <input name="user_id" type="hidden" value="',$_SESSION['id'],'">

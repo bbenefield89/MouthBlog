@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
   integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
   <!-- MAIN CSS -->
   <link rel="stylesheet" href="assets/css/main.css">
 

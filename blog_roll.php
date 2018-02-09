@@ -1,38 +1,26 @@
 <?php
 
-session_start();
+  session_start();
 
-if (!isset($_SESSION['id']) || !isset($_SESSION['name']) || !isset($_SESSION['email'])) {
-  header('Location: index.php');
-}
+  if (!isset($_SESSION['id']) || !isset($_SESSION['name']) || !isset($_SESSION['email'])) {
+    header('Location: index.php');
+  }
 
-include('includes/db/connection.php');
-include('includes/db/create/submit_post.query.php');
-include('includes/db/read/blog_roll.query.php');
-include('includes/db/delete/delete_post.query.php');
-
-$id    = htmlentities($_SESSION['id'], ENT_QUOTES, 'ISO-8859-15');
-$name  = htmlentities($_SESSION['name'], ENT_QUOTES, 'ISO-8859-15');
-$email = htmlentities($_SESSION['email'], ENT_QUOTES, 'ISO-8859-15');
-
-// CREATE A NEW POST
-if (isset($_POST['content'])) {
-  $content     = htmlentities($_POST['content'], ENT_QUOTES, 'ISO-8859-15');
-  $submit_post = new SubmitPost($id, $name, $content);
+  include('includes/db/connection.php');
+  include('includes/db/read/blog_roll.query.php');
+  include('includes/db/create/submit_comment.query.php');
   
-  // $submit_post->submit_post($id, $name, $content);
-  unset($submit_post);
-}
+  if (isset($_POST['submit_comment'])) {
+    $submit_comment = new SubmitComment($_POST['post_id'], $_POST['user_id'], $_POST['username'], $_POST['comment_content']);
+    
+    unset($submit_comment);
+  }
 
-// DELETE A POST
-// if (isset($_POST['delete_post']) && isset($_POST['post_id'])) {
-//   $post_id = htmlentities($_POST['post_id'], ENT_QUOTES, 'ISO-8859-15');
-//   $delete_post = new DeletePost($post_id);
-  
-//   unset($delete_post);
-// }
+  $id    = htmlentities($_SESSION['id'], ENT_QUOTES, 'ISO-8859-15');
+  $name  = htmlentities($_SESSION['name'], ENT_QUOTES, 'ISO-8859-15');
+  $email = htmlentities($_SESSION['email'], ENT_QUOTES, 'ISO-8859-15');
 
-include('includes/header.php');
+  include('includes/header.php');
 
 ?>
 
@@ -53,7 +41,7 @@ include('includes/header.php');
             <input id="submit-post-id" name="submit-post-id" type="hidden" value="<?php echo $id; ?>">
             <input id="submit-post-name" name="submit-post-name" type="hidden" value="<?php echo $name; ?>">
           </form>
-        </header>
+        </header><!-- col -->
         
         <section class="col-8 pt-4">
           
@@ -63,19 +51,9 @@ include('includes/header.php');
           
           ?>
           
-        </section>
+        </section><!-- col -->
         
         <aside class="col-4 text-center">
-          
-          <h3 class="h3">Following</h3>
-          <hr>
-          <ul class="list-unstyled mb-5">
-            <li>User 1</li>
-            <li>User 1</li>
-            <li>User 1</li>
-            <li>User 1</li>
-            <li>User 1</li>
-          </ul>
           
           <h3 class="h3">Discover Someone</h3>
           <hr>
@@ -97,11 +75,42 @@ include('includes/header.php');
             <li>User 1</li>
           </ul>
           
-        </aside>
-      </div>
+        </aside><!-- col -->
+      </div><!-- row -->
       
+    </div><!-- col -->
+  </div><!-- row -->
+</main><!-- container -->
+
+<div class="post-modal-outer col-12">
+  <div class="post-modal-inner col-12 col-sm-10 col-md-8 col-xl-6 mb-4">
+    <div class="post-modal-header modal-header">
+      <h3 class="h5" id="post-modal-username"><!-- USERNAME --></h3>
+      <i class="post-modal-close fas fa-times fa-lg text-danger"></i>
+      <small id="post-modal-created-on"><!-- CREATED ON --></small>
+    </div><!-- header -->
+    <hr>
+    <div class="post-modal-body modal-body">
+      <p class="lead" id="post-modal-content"><!-- CONTENT --></p>
+    </div><!-- body -->
+    <hr>
+    
+    <!-- ADD COMMENT FORM -->
+    <form action="<?php htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, 'ISO-8859-15'); ?>" class="post-modal-add-comment-form" method="POST">
+      <h4 class="h6 mb-3">Add a comment</h4>
+      <textarea class="mb-3 post-modal-comment-content" name="comment_content" required></textarea>
+      <input class="post-modal-post-id" name="post_id" type="hidden" value="">
+      <input class="post-modal-comment-user-id" name="user_id" type="hidden" value="<?php echo $id; ?>">
+      <input class="post-modal-comment-username" name="username" type="hidden" value="<?php echo $name; ?>">
+      <button class="btn btn-lg btn-success mb-3" name="submit_comment" type="submit">Add Comment</button>
+    </form><!-- form -->
+    
+    <!-- DYNAMICALLY GENERATED CONTENT -->
+    <div class="post-modal-comments-wrapper pl-3">
+      <!-- FILLED IN WITH JS -->
     </div>
-  </div>
-</main>
+    
+  </div><!-- inner modal -->
+</div><!-- outer modal -->
 
 <?php include('includes/footer.php'); ?>
