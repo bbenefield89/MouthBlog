@@ -32,6 +32,36 @@
     border-top-left-radius: 50px;
     box-shadow: -1px 0 5px;
     
+    .row.post-container {
+      opacity: 1;
+      transition: opacity 1s;
+      
+      .fa-comment-alt {
+        cursor: pointer;
+        
+      }
+      
+      .heart-post-button {
+        background: transparent;
+        border: 0;
+        outline-color: transparent;
+      }
+        
+      .fa-heart {
+        color: #999;
+        cursor: pointer;
+        transition: color .25s;
+        
+        &:hover {
+          color: lightpink;
+        }
+      }
+      
+      .liked {
+        color: lightpink;
+      }
+    }
+    
     article {
       border-radius: 3px;
       box-shadow: 0 0 5px;
@@ -48,6 +78,57 @@
     
     hr {
       width: 50%;
+    }
+  }
+}
+
+.post-modal-outer {
+  background-color: rgba(0, 0, 0, .8);
+  display: none;
+  height: 100%;
+  overflow: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  
+  .post-modal-inner {
+    background: $marshmallow;
+    border-radius: 5px;
+    top: 50px;
+    
+    .post-modal-header {
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      
+      .post-modal-close {
+        align-self: flex-start;
+        cursor: pointer;
+      }
+      
+      small {
+        width: 100%;
+      }
+    }
+    
+    form {
+      display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      
+      textarea {
+        height: 115px;
+        width: 80%;
+      }
+    }
+    
+    .post-modal-comments-wrapper {
+      
+      .post-modal-comment {
+      }
     }
   }
 }

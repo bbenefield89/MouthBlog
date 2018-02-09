@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Nunito|PT+Sans|Quicksand");
 body {
-  background: #5cdb95; }
+  background: #5cdb95;
+  font-family: 'Nunito', sans-serif; }
   body nav {
     background: #05386b;
     margin-bottom: 2em; }
@@ -67,6 +69,23 @@ body {
     background: #edf5e1;
     border-top-left-radius: 50px;
     box-shadow: -1px 0 5px; }
+    body .blog-roll section .row.post-container {
+      opacity: 1;
+      transition: opacity 1s; }
+      body .blog-roll section .row.post-container .fa-comment-alt {
+        cursor: pointer; }
+      body .blog-roll section .row.post-container .heart-post-button {
+        background: transparent;
+        border: 0;
+        outline-color: transparent; }
+      body .blog-roll section .row.post-container .fa-heart {
+        color: #999;
+        cursor: pointer;
+        transition: color .25s; }
+        body .blog-roll section .row.post-container .fa-heart:hover {
+          color: lightpink; }
+      body .blog-roll section .row.post-container .liked {
+        color: lightpink; }
     body .blog-roll section article {
       border-radius: 3px;
       box-shadow: 0 0 5px;
@@ -79,5 +98,36 @@ body {
     padding-top: 43px; }
     body .blog-roll aside hr {
       width: 50%; }
+  body .post-modal-outer {
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1; }
+    body .post-modal-outer .post-modal-inner {
+      background: #edf5e1;
+      border-radius: 5px;
+      top: 50px; }
+      body .post-modal-outer .post-modal-inner .post-modal-header {
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap; }
+        body .post-modal-outer .post-modal-inner .post-modal-header .post-modal-close {
+          align-self: flex-start;
+          cursor: pointer; }
+        body .post-modal-outer .post-modal-inner .post-modal-header small {
+          width: 100%; }
+      body .post-modal-outer .post-modal-inner form {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center; }
+        body .post-modal-outer .post-modal-inner form textarea {
+          height: 115px;
+          width: 80%; }
 
 /*# sourceMappingURL=main.css.map */
