@@ -4,21 +4,22 @@ class BlogRoll extends Connection {
   public function __construct() {
     $this->connect();
     
-    $sql    = "SELECT
-                 `post_id`,
-                 `user_id`
-               FROM
-                 `hearted_posts`";
-    $query  = $this->connect()->prepare($sql);
-    $result = $query->execute();
-    $heart_post_array = [];
+    // QUERY FOR `hearted_posts` TABLE
+    $sql_hearted_posts    = "SELECT
+                               `post_id`,
+                               `user_id`
+                             FROM
+                               `hearted_posts`";
+    $query                = $this->connect()->prepare($sql_hearted_posts);
+    $result               = $query->execute();
+    $heart_post_array     = [];
     
     if ($result) {
       while ($row = $query->fetch(PDO::FETCH_OBJ)) {
         array_push($heart_post_array, $row);
       }
     } else {
-      die('SOMETHING WENT WRONG WITH 1st QUERY');
+      die('SOMETHING WENT WRONG WITH sql_hearted_posts QUERY');
     }
     
     $sql    = "SELECT
