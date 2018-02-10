@@ -110,16 +110,20 @@ body {
     body .post-modal-outer .post-modal-inner {
       background: #edf5e1;
       border-radius: 5px;
+      padding: 0;
       top: 50px; }
       body .post-modal-outer .post-modal-inner .post-modal-header {
         align-items: center;
         justify-content: space-between;
-        flex-wrap: wrap; }
+        flex-wrap: wrap;
+        padding: 16px 30px; }
         body .post-modal-outer .post-modal-inner .post-modal-header .post-modal-close {
           align-self: flex-start;
           cursor: pointer; }
         body .post-modal-outer .post-modal-inner .post-modal-header small {
           width: 100%; }
+      body .post-modal-outer .post-modal-inner .post-modal-body {
+        padding: 16px 30px; }
       body .post-modal-outer .post-modal-inner form {
         display: flex;
         flex-direction: column;
@@ -129,5 +133,10 @@ body {
         body .post-modal-outer .post-modal-inner form textarea {
           height: 115px;
           width: 80%; }
+      body .post-modal-outer .post-modal-inner .post-modal-comments-wrapper {
+        background: inherit;
+        padding: 0 30px; }
+        body .post-modal-outer .post-modal-inner .post-modal-comments-wrapper .post-modal-comment:last-child {
+          padding-bottom: 1px; }
 
 /*# sourceMappingURL=main.css.map */

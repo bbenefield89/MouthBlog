@@ -95,12 +95,14 @@
   .post-modal-inner {
     background: $marshmallow;
     border-radius: 5px;
+    padding: 0;
     top: 50px;
     
     .post-modal-header {
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
+      padding: 16px 30px;
       
       .post-modal-close {
         align-self: flex-start;
@@ -110,6 +112,10 @@
       small {
         width: 100%;
       }
+    }
+    
+    .post-modal-body {
+      padding: 16px 30px;
     }
     
     form {
@@ -126,8 +132,14 @@
     }
     
     .post-modal-comments-wrapper {
+      background: inherit;
+      padding: 0 30px;
       
       .post-modal-comment {
+        
+        &:last-child {
+          padding-bottom: 1px;
+        }
       }
     }
   }
