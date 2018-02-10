@@ -4,7 +4,9 @@ class SubmitComment extends Connection {
   public function __construct($post_id, $user_id, $username, $comment_content) {
     $this->connect();
     
-    $sql = "INSERT INTO
+    $sql = "START TRANSACTION;
+    
+            INSERT INTO
               comments
             VALUES
               (
@@ -14,7 +16,16 @@ class SubmitComment extends Connection {
                 :username,
                 :comment_content,
                 CURRENT_TIMESTAMP
-              )";
+              );
+              
+            UPDATE
+              posts
+            SET
+              comment_count = comment_count + 1
+            WHERE
+              id = :post_id;
+              
+            COMMIT;";
     $query = $this->connect()->prepare($sql);
     $result = $query->execute(
       [
