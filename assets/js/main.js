@@ -1,8 +1,11 @@
-require([ 'ajax_requests' ], function (aR) {
+require([ 'ajax_requests', 'input_validation' ], function (aR, iV) {
   /*********************
   ** GLOBAL VARIABLES **
   *********************/
   const ajaxRequests = new aR.AJAXRequests;
+  // const inputValidation = iV.inputValidation();
+  
+  const createAccountForm = document.querySelector('.create_account_form');
   
   const submitPostBtn     = document.querySelector('#submit-post-button');
   const submitPostID      = document.querySelector('#submit-post-id');
@@ -19,6 +22,65 @@ require([ 'ajax_requests' ], function (aR) {
   const commentsContainer        = document.createElement('div');
   
   commentsContainer.setAttribute('class', 'post-modal-comments-wrapper');
+  
+  /*************************************
+  ** INPUT VALIDATION FOR `index.php` **
+  *************************************/
+  if (createAccountForm) {
+    const formGroup        = document.querySelectorAll('.form-group');
+    const nameInput        = document.querySelector('input[name="name"]');
+    const emailInput       = document.querySelector('input[name="email"]');
+    const passwordInput    = document.querySelector('input[name="password"]');
+    const submitFormButton = document.querySelector('button[name="create_account"]');
+    
+    // FUNC TO CREATE SMALL TAG UNDERNEARTH CORRESONDING INPUT ON ERROR
+    const formError = (fGRP, errText) => {
+      const textDanger = document.querySelector(`.text-danger.error-${ fGRP }`);
+      
+      if (!textDanger) {
+        const errorText = document.createElement('small');
+        
+        errorText.setAttribute('class', `text-danger error-${ fGRP }`);
+        errorText.innerText = errText;
+        
+        formGroup[fGRP].append(errorText);
+      }
+    }
+    
+    // WHEN SUBMITTING `createAccount` FORM
+    submitFormButton.addEventListener('click', e => {
+      const checkErrorExists = (fGRP) => {
+        formGroup[fGRP].children[1] ? formGroup[2].children[1].remove() : null;
+      };
+      
+      // `nameInput` VALIDATION
+      if (/^[a-z][\w]/ig.test(nameInput.value)) {
+        checkErrorExists(2);
+      } else {
+        e.preventDefault();
+        
+        formError(2, 'A name is required to have atleast two alphanumeric characters');
+      }
+      
+      // `emailInput` VALIDATION
+      if (/^[a-z0-9][a-z0-9-_\.]+@[a-z0-9][a-z0-9-]+[a-z0-9]\.[a-z0-9]{2,10}(?:\.[a-z]{2,10})?$/.test(emailInput.value)) {
+        checkErrorExists(3);
+      } else {
+          e.preventDefault();
+          
+          formError(3, 'A valid e-mail address is required');
+      }
+        
+      // `passwordInput` VALIDATION
+      if (/^[a-z][\w]/ig.test(passwordInput.value)) {
+        checkErrorExists(4);
+      } else {
+          e.preventDefault();
+          
+          formError(4, 'A password is required to have atleast two alphanumeric characters');
+      }
+    });
+  }
   
   /******************************************************
   ** PLACE `liked` CLASS ON HEARTED POSTS ON PAGE LOAD **
