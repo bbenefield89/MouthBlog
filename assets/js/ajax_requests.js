@@ -181,20 +181,15 @@ define(() => {
         this.xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         this.xhr.send(data);
         
-        console.log(data);
-        
         this.xhr.onload = () => {
           if (this.xhr.status == 200) {
-            console.log('SENDING');
             resolve(JSON.parse(this.xhr.response));
           } else {
-            console.log('REJECTING');
             reject(this.xhr.statusText);
           }
         };
         
         this.xhr.onerror = () => {
-          console.log('ERROR');
           reject(this.xhr.statusText);
         };
       });

@@ -89,10 +89,13 @@
       <i class="post-modal-close fas fa-times fa-lg text-danger"></i>
       <small id="post-modal-created-on"><!-- CREATED ON --></small>
     </div><!-- header -->
+    
     <hr>
+    
     <div class="post-modal-body modal-body">
       <p class="lead" id="post-modal-content"><!-- CONTENT --></p>
     </div><!-- body -->
+    
     <hr>
     
     <!-- ADD COMMENT FORM -->
@@ -105,10 +108,7 @@
       <button class="btn btn-lg btn-success mb-3" name="submit_comment" type="submit">Add Comment</button>
     </form><!-- form -->
     
-    <!-- DYNAMICALLY GENERATED CONTENT -->
-    <div class="post-modal-comments-wrapper pl-3">
-      <!-- FILLED IN WITH JS -->
-    </div>
+    <!-- COMMENTS WILL BE DYNAMICALLY GENERATED AND PLACED HERE WITH JS/PHP -->
     
   </div><!-- inner modal -->
 </div><!-- outer modal -->

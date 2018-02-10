@@ -15,9 +15,10 @@ require([ 'ajax_requests' ], function (aR) {
   
   const submitCommentBtn         = document.querySelector('button[name="submit_comment"]');
   const postModalCommentsWrapper = document.querySelector('.post-modal-comments-wrapper');
-  const newComment               = document.createElement('div');
+  const postModalInner           = document.querySelector('.post-modal-inner');
+  const commentsContainer        = document.createElement('div');
   
-  newComment.setAttribute('class', 'post-modal-comment mb-4');
+  commentsContainer.setAttribute('class', 'post-modal-comments-wrapper');
   
   /******************************************************
   ** PLACE `liked` CLASS ON HEARTED POSTS ON PAGE LOAD **
@@ -25,8 +26,6 @@ require([ 'ajax_requests' ], function (aR) {
   window.addEventListener('load', () => {
     for (let i = 0; i < heartIconBtn.length; i++) {
       if (heartIconBtn[i].classList[1] === 'liked') {
-        let heartIconSVG = heartIconBtn[i].children[0].children[0];
-        
         heartIconBtn[i].children[0].children[0].classList.add('liked');
       }
     }
@@ -44,8 +43,6 @@ require([ 'ajax_requests' ], function (aR) {
       
     // EVENT DELEGATION TO HANDLE ON CLICK EVENTS
     displayPostWrapper.addEventListener('click', e => {
-      // console.log(e.path[1].classList);
-      
       // POST MODAL FUNC
       const postModalFunc = (childrenPath, postIDPath, heartCountPath) => {
         const { children }        = e.path[childrenPath];
@@ -65,7 +62,6 @@ require([ 'ajax_requests' ], function (aR) {
         
         // ADD `postModal` CSS
         postModal.style.display        = 'flex';
-        postModal.style.alignItems     = 'center';
         postModal.style.justifyContent = 'center';
         
         // DYNAMICALLY INSERT CONTENT
@@ -126,17 +122,20 @@ require([ 'ajax_requests' ], function (aR) {
           .then(data => {
             console.log(data);
             
-            newComment.innerHTML = data.map(d => {
-                return `<div class="post-modal-comment-header mb-2">
-                  <p class="mb-0">${ d.username }</p>
-                  <small>${ d.date_created }</small>
-                </div>
-                <div class="post-modal-comment-content">
-                  <p>${ d.comment_content }</p>
-                </div>` ;
+            commentsContainer.innerHTML = data.map(d => {
+                return `<div class="post-modal-comment mb-4">
+                          <div class="post-modal-comment-header mb-2">
+                            <p class="mb-0">${ d.username }</p>
+                            <small>${ d.date_created }</small>
+                          </div>
+                          <div class="post-modal-comment-content">
+                            <p>${ d.comment_content }</p>
+                          </div>
+                        </div>
+                ` ;
               }).join('');
               
-            postModalCommentsWrapper.prepend(newComment);
+            postModalInner.append(commentsContainer);
           });
       }
       
@@ -186,13 +185,11 @@ require([ 'ajax_requests' ], function (aR) {
       // CHECK IF HEART ICON WAS CLICKED FROM `path`
       } else if (e.path[0].parentElement.classList[1] === 'fa-heart') {
         e.preventDefault();
-        console.log('CALLING heartFunc()');
         heartFunc(1, 4);
 
       // CHECK IF HEART ICON WAS CLICKED FROM `svg`
       } else if (e.path[0].classList[1] === 'fa-heart') {
         e.preventDefault();
-        console.log('CALLING heartFunc()');
         heartFunc(0, 3);
       }
     }); // click event
@@ -255,6 +252,7 @@ require([ 'ajax_requests' ], function (aR) {
       }); // then
     }); // click event
     
+    // SUBMIT NEW COMMENT
     submitCommentBtn.addEventListener('click', e => {
       e.preventDefault();
       
@@ -268,10 +266,11 @@ require([ 'ajax_requests' ], function (aR) {
         .then(() => {
           ajaxRequests.returnNewestComment('//localhost/mouthblog/api/newest_comment.php')
             .then(data => {
-              // const postModalCommentsWrapper = document.querySelector('.post-modal-comments-wrapper');
-              // const newComment = document.createElement('div');
-              console.log(data);
               
+              const modalCommentsWrapper = document.querySelector('.post-modal-comments-wrapper');
+              const newComment = document.createElement('div');
+              
+              newComment.setAttribute('class', 'post-modal-comment mb-4');
               newComment.innerHTML = `
                                       <div class="post-modal-comment-header mb-2">
                                         <p class="mb-0">${ data.username }</p>
@@ -282,10 +281,11 @@ require([ 'ajax_requests' ], function (aR) {
                                       </div>
               `;
               
-              postModalCommentsWrapper.prepend(newComment);
-            });
-        });
-    });
+              console.log({ data, modalCommentsWrapper, newComment });
+              modalCommentsWrapper.prepend(newComment);
+            }); // then
+        }); // then
+    }); // click
     
     
   } // if
