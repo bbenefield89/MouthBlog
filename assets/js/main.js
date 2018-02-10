@@ -15,10 +15,10 @@ require([ 'ajax_requests' ], function (aR) {
   
   const submitCommentBtn         = document.querySelector('button[name="submit_comment"]');
   const postModalCommentsWrapper = document.querySelector('.post-modal-comments-wrapper');
-  const postModalInner = document.querySelector('.post-modal-inner');
+  const postModalInner           = document.querySelector('.post-modal-inner');
   const commentsContainer        = document.createElement('div');
   
-  commentsContainer.setAttribute('class', 'post-modal-comments-wrapper pl-3');
+  commentsContainer.setAttribute('class', 'post-modal-comments-wrapper');
   
   /******************************************************
   ** PLACE `liked` CLASS ON HEARTED POSTS ON PAGE LOAD **
@@ -62,7 +62,6 @@ require([ 'ajax_requests' ], function (aR) {
         
         // ADD `postModal` CSS
         postModal.style.display        = 'flex';
-        postModal.style.alignItems     = 'center';
         postModal.style.justifyContent = 'center';
         
         // DYNAMICALLY INSERT CONTENT
