@@ -44,19 +44,16 @@ include('includes/header.php');
       
       <h1 class="h1 text-center">Create a New Account</h1>
       
-      <form action="<?php htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, 'ISO-8859-15'); ?>" method="POST">
+      <form action="<?php htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, 'ISO-8859-15'); ?>" class="create_account_form" method="POST">
         <div class="form-group">
-          <input class="form-control form-control-lg" type="text" name="name" placeholder="First Name">
+          <input class="form-control form-control-lg" type="text" name="name" placeholder="First Name" required>
         </div>
-        
         <div class="form-group">
-          <input class="form-control form-control-lg" type="email" name="email" placeholder="Email Address">
+          <input class="form-control form-control-lg" type="email" name="email" placeholder="Email Address" required>
         </div>
-        
         <div class="form-group">
-          <input class="form-control form-control-lg" type="password" name="password" placeholder="Password">
+          <input class="form-control form-control-lg" type="password" name="password" placeholder="Password" required>
         </div>
-        
         <button class="btn btn-lg float-right" type="submit" name="create_account">Create Account</button>
       </form>
       
