@@ -7,6 +7,29 @@ define(() => {
     // FIGURE THIS OUT
     xhrMethods(method, url, sendData = {} ) {}
     
+    // LOGIN
+    login(formData) {
+      return new Promise((resolve, reject) => {
+        this.xhr.open('POST', '//localhost/mouthblog/index.php', true);
+        this.xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        this.xhr.send(formData);
+        
+        this.xhr.onload = () => {
+          if (this.xhr.status == 200) {
+            resolve(this.xhr.response);
+          } else {
+            reject(this.xhr.statusText);
+            console.log('REJECTING1');
+          }
+        };
+        
+        this.xhr.onerror = () => {
+          reject(this.xhr.statusText);
+          console.log('REJECTING2');
+        };
+      });
+    }
+    
     // RETURN ALL POSTS
     getAllPosts() {
       return new Promise((resolve, reject) => {

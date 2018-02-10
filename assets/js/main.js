@@ -5,6 +5,7 @@ require([ 'ajax_requests', 'input_validation' ], function (aR, iV) {
   const ajaxRequests = new aR.AJAXRequests;
   // const inputValidation = iV.inputValidation();
   
+  const loginBtn          = document.querySelector('#login-button');
   const createAccountForm = document.querySelector('.create_account_form');
   
   const submitPostBtn     = document.querySelector('#submit-post-button');
@@ -26,8 +27,10 @@ require([ 'ajax_requests', 'input_validation' ], function (aR, iV) {
   /*************************************
   ** INPUT VALIDATION FOR `index.php` **
   *************************************/
-  if (createAccountForm) {
+  if (loginBtn && createAccountForm) {
     const formGroup        = document.querySelectorAll('.form-group');
+    const loginEmail       = document.querySelector('input[name="login_email"]');
+    const loginPassword    = document.querySelector('input[name="login_password"]');
     const nameInput        = document.querySelector('input[name="name"]');
     const emailInput       = document.querySelector('input[name="email"]');
     const passwordInput    = document.querySelector('input[name="password"]');
@@ -45,14 +48,37 @@ require([ 'ajax_requests', 'input_validation' ], function (aR, iV) {
         
         formGroup[fGRP].append(errorText);
       }
-    }
+    };
     
-    // WHEN SUBMITTING `createAccount` FORM
-    submitFormButton.addEventListener('click', e => {
-      const checkErrorExists = (fGRP) => {
-        formGroup[fGRP].children[1] ? formGroup[2].children[1].remove() : null;
-      };
+    const checkErrorExists = (fGRP) => {
+      formGroup[fGRP].children[1] ? formGroup[2].children[1].remove() : null;
+    };
+    
+    // WHEN SUBMITTING `loginForm`
+    loginBtn.addEventListener('click', e => {
+      e.preventDefault();
       
+      ajaxRequests.login(`login_email=${ loginEmail.value }&login_password=${ loginPassword.value }`)
+        .then(data => {
+          if (data !== 'E-mail and or password are incorrect') {
+            window.location.replace('//localhost/mouthblog/blog_roll.php');
+          } else {
+            const loginForm = document.querySelector('#login-form');
+            const errorText = document.createElement('small');
+            const loginError = document.querySelector('.login-error');
+            
+            if (!loginError) {
+              errorText.setAttribute('class', 'text-danger login-error');
+              errorText.innerText = 'E-mail and or password are incorrect';
+              
+              loginForm.children[1].append(errorText);
+            }
+          }
+        });
+    });
+    
+    // WHEN SUBMITTING `createAccount`
+    submitFormButton.addEventListener('click', e => {
       // `nameInput` VALIDATION
       if (/^[a-z][\w]/ig.test(nameInput.value)) {
         checkErrorExists(2);

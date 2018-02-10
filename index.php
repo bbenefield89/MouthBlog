@@ -1,39 +1,36 @@
 <?php
 
-session_start();
+  session_start();
 
-if (isset($_SESSION['email'])) {
-  header('Location: blog_roll.php');
-}
+  if (isset($_SESSION['email'])) {
+    header('Location: blog_roll.php');
+  }
 
-include('includes/db/connection.php');
-include('includes/db/create/create_account.query.php');
-include('includes/db/read/login.query.php');
+  include('includes/db/connection.php');
+  include('includes/db/create/create_account.query.php');
+  include('includes/db/read/login.query.php');
 
-// CREATE ACCOUNT
-if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
-  $name           = htmlentities($_POST['name'], ENT_QUOTES, 'ISO-8859-15');
-  $email          = htmlentities($_POST['email'], ENT_QUOTES, 'ISO-8859-15');
-  $password       = password_hash(htmlentities($_POST['password'], ENT_QUOTES, 'ISO-8859-15'),
-                    PASSWORD_DEFAULT);
-  $create_account = new CreateAccount($name, $password, $email);
-  
-  unset($create_account);
-}
+  // CREATE ACCOUNT
+  if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
+    $name           = htmlentities($_POST['name'], ENT_QUOTES, 'ISO-8859-15');
+    $email          = htmlentities($_POST['email'], ENT_QUOTES, 'ISO-8859-15');
+    $password       = password_hash(htmlentities($_POST['password'], ENT_QUOTES, 'ISO-8859-15'),
+                      PASSWORD_DEFAULT);
+    $create_account = new CreateAccount($name, $password, $email);
+    
+    unset($create_account);
+  }
 
-// LOG IN
-if (isset($_POST['login_email']) && isset($_POST['login_password'])) {
-  $email = htmlentities($_POST['login_email'], ENT_QUOTES, 'ISO-8859-15');
-  $password = htmlentities($_POST['login_password'], ENT_QUOTES, 'ISO-8859-15');
-  $login = new Login($email, $password);
-  
-  unset($login);
-}
+  // LOG IN
+  if (isset($_POST['login_email']) && isset($_POST['login_password'])) {
+    $email = htmlentities($_POST['login_email'], ENT_QUOTES, 'ISO-8859-15');
+    $password = htmlentities($_POST['login_password'], ENT_QUOTES, 'ISO-8859-15');
+    $login = new Login($email, $password);
+    
+    unset($login);
+  }
 
-?>
-<?php
-
-include('includes/header.php');
+  include('includes/header.php');
 
 ?>
 
