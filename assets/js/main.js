@@ -1,7 +1,7 @@
 require([ 'ajax_requests' ], function (aR) {
-  /**************
-  ** VARIABLES **
-  **************/
+  /*********************
+  ** GLOBAL VARIABLES **
+  *********************/
   const ajaxRequests = new aR.AJAXRequests;
   
   const submitPostBtn     = document.querySelector('#submit-post-button');
@@ -264,6 +264,19 @@ require([ 'ajax_requests' ], function (aR) {
       ajaxRequests.submitComment('//localhost/mouthblog/ajax/submit_comment.ajax.php',
         `post_id=${ postID }&user_id=${ commentUserID }&username=${ commentUsername }&comment_content=${ commentContent }`)
         .then(() => {
+          const nonModalPostForm = document.querySelectorAll('.blog-post-interactions');
+          
+          for (let i = 0; i < nonModalPostForm.length; i++) {
+            if (nonModalPostForm[i].children[5].value === postID) {
+              const commentCountText = nonModalPostForm[i].children[1];
+              let commentCountNum = Number(commentCountText.innerText);
+              
+              commentCountNum++;
+              
+              commentCountText.innerText = commentCountNum;
+            }
+          }
+          
           ajaxRequests.returnNewestComment('//localhost/mouthblog/api/newest_comment.php')
             .then(data => {
               
@@ -281,7 +294,6 @@ require([ 'ajax_requests' ], function (aR) {
                                       </div>
               `;
               
-              console.log({ data, modalCommentsWrapper, newComment });
               modalCommentsWrapper.prepend(newComment);
             }); // then
         }); // then
