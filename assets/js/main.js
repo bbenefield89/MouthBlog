@@ -11,7 +11,7 @@ require([ 'ajax_requests' ], function (aR) {
 
   const heartIconBtn = document.querySelectorAll('.heart-post-button');
 
-  const displayPostWrapper = document.querySelector('.col-8.pt-4');
+  const displayPostWrapper = document.querySelector('.col-12.pt-4');
   
   const submitCommentBtn         = document.querySelector('button[name="submit_comment"]');
   const postModalCommentsWrapper = document.querySelector('.post-modal-comments-wrapper');

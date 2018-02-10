@@ -2,7 +2,8 @@
 @import 'variables';
 
 body {
-  background: $lightGreen;
+  background-color: $lightGreen;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon fill='%23000' fill-opacity='.1' points='120%2C0 120%2C60 90%2C30 60%2C0 0%2C0 0%2C0 60%2C60 0%2C120 60%2C120 90%2C90 120%2C60 120%2C0'/%3E%3C/svg%3E");
   // font-family: 'Montserrat', sans-serif;
   // font-family: 'PT Sans', sans-serif;
   font-family: 'Nunito', sans-serif;

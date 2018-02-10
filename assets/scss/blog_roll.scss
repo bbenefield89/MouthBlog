@@ -28,13 +28,25 @@
   }
   
   section {
-    background: $marshmallow;
-    border-top-left-radius: 50px;
-    box-shadow: -1px 0 5px;
     
     .row.post-container {
       opacity: 1;
       transition: opacity 1s;
+      
+      > article {
+        background: $marshmallow;
+        border-radius: 3px;
+        box-shadow: 0 0 0 transparent;
+        margin-bottom: 1.5rem;
+        padding: 15px;
+        top: 0;
+        transition: box-shadow .25s, top .25s;
+        
+        &:hover {
+          box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
+          top: -2px;
+        }
+      }
       
       .fa-comment-alt {
         cursor: pointer;
@@ -60,13 +72,6 @@
       .liked {
         color: lightpink;
       }
-    }
-    
-    article {
-      border-radius: 3px;
-      box-shadow: 0 0 5px;
-      margin-bottom: 1.5rem;
-      padding: 15px;
     }
   }
   

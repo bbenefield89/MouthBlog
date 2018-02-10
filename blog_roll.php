@@ -43,7 +43,7 @@
           </form>
         </header><!-- col -->
         
-        <section class="col-8 pt-4">
+        <section class="col-12 pt-4">
           
           <?php
           
@@ -52,30 +52,6 @@
           ?>
           
         </section><!-- col -->
-        
-        <aside class="col-4 text-center">
-          
-          <h3 class="h3">Discover Someone</h3>
-          <hr>
-          <ul class="list-unstyled mb-5">
-            <li>User 1</li>
-            <li>User 1</li>
-            <li>User 1</li>
-            <li>User 1</li>
-            <li>User 1</li>
-          </ul>
-          
-          <h3 class="h3">Stories</h3>
-          <hr>
-          <ul class="list-unstyled mb-5">
-            <li>User 1</li>
-            <li>User 1</li>
-            <li>User 1</li>
-            <li>User 1</li>
-            <li>User 1</li>
-          </ul>
-          
-        </aside><!-- col -->
       </div><!-- row -->
       
     </div><!-- col -->

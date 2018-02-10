@@ -1,6 +1,6 @@
 /*
 Error: Undefined variable: "$marshmallow".
-        on line 11 of scss/blog_roll.scss
+        on line 11 of assets/scss/blog_roll.scss
 
 6:   
 7:   header {
@@ -15,7 +15,7 @@ Error: Undefined variable: "$marshmallow".
 16:       color: #000;
 
 Backtrace:
-scss/blog_roll.scss:11
+assets/scss/blog_roll.scss:11
 C:/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/script/tree/node.rb:50:in `perform'
 C:/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
@@ -91,4 +91,4 @@ C:/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-listen-4.0.0/lib/sass-listen/interna
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$marshmallow\".\A         on line 11 of scss/blog_roll.scss\A \A 6:   \A 7:   header {\A 8:     \A 9:     h1,\A 10:     p {\A 11:       color: $marshmallow;\A 12:       text-align: center;\A 13:     }\A 14:     \A 15:     p {\A 16:       color: #000;"; }
+  content: "Error: Undefined variable: \"$marshmallow\".\A         on line 11 of assets/scss/blog_roll.scss\A \A 6:   \A 7:   header {\A 8:     \A 9:     h1,\A 10:     p {\A 11:       color: $marshmallow;\A 12:       text-align: center;\A 13:     }\A 14:     \A 15:     p {\A 16:       color: #000;"; }

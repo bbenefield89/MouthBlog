@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat|Nunito|PT+Sans|Quicksand");
 body {
-  background: #5cdb95;
+  background-color: #5cdb95;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon fill='%23000' fill-opacity='.1' points='120%2C0 120%2C60 90%2C30 60%2C0 0%2C0 0%2C0 60%2C60 0%2C120 60%2C120 90%2C90 120%2C60 120%2C0'/%3E%3C/svg%3E");
   font-family: 'Nunito', sans-serif; }
   body nav {
     background: #05386b;
@@ -65,32 +66,34 @@ body {
     color: #edf5e1;
     text-shadow: 0 1px #000;
     width: 100%; }
-  body .blog-roll section {
-    background: #edf5e1;
-    border-top-left-radius: 50px;
-    box-shadow: -1px 0 5px; }
-    body .blog-roll section .row.post-container {
-      opacity: 1;
-      transition: opacity 1s; }
-      body .blog-roll section .row.post-container .fa-comment-alt {
-        cursor: pointer; }
-      body .blog-roll section .row.post-container .heart-post-button {
-        background: transparent;
-        border: 0;
-        outline-color: transparent; }
-      body .blog-roll section .row.post-container .fa-heart {
-        color: #999;
-        cursor: pointer;
-        transition: color .25s; }
-        body .blog-roll section .row.post-container .fa-heart:hover {
-          color: lightpink; }
-      body .blog-roll section .row.post-container .liked {
-        color: lightpink; }
-    body .blog-roll section article {
+  body .blog-roll section .row.post-container {
+    opacity: 1;
+    transition: opacity 1s; }
+    body .blog-roll section .row.post-container > article {
+      background: #edf5e1;
       border-radius: 3px;
-      box-shadow: 0 0 5px;
+      box-shadow: 0 0 0 transparent;
       margin-bottom: 1.5rem;
-      padding: 15px; }
+      padding: 15px;
+      top: 0;
+      transition: box-shadow .25s, top .25s; }
+      body .blog-roll section .row.post-container > article:hover {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        top: -2px; }
+    body .blog-roll section .row.post-container .fa-comment-alt {
+      cursor: pointer; }
+    body .blog-roll section .row.post-container .heart-post-button {
+      background: transparent;
+      border: 0;
+      outline-color: transparent; }
+    body .blog-roll section .row.post-container .fa-heart {
+      color: #999;
+      cursor: pointer;
+      transition: color .25s; }
+      body .blog-roll section .row.post-container .fa-heart:hover {
+        color: lightpink; }
+    body .blog-roll section .row.post-container .liked {
+      color: lightpink; }
   body .blog-roll aside {
     background: #edf5e1;
     border-top-right-radius: 50px;
