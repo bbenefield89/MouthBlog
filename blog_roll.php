@@ -89,10 +89,13 @@
       <i class="post-modal-close fas fa-times fa-lg text-danger"></i>
       <small id="post-modal-created-on"><!-- CREATED ON --></small>
     </div><!-- header -->
+    
     <hr>
+    
     <div class="post-modal-body modal-body">
       <p class="lead" id="post-modal-content"><!-- CONTENT --></p>
     </div><!-- body -->
+    
     <hr>
     
     <!-- ADD COMMENT FORM -->
