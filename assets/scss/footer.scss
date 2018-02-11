@@ -1,0 +1,18 @@
+footer {
+  background: $navyBlue;
+  
+  .fa-github,
+  .fa-twitter,
+  .fa-linkedin {
+    color: #fff;
+  }
+  
+  small {
+    color: #fff;
+    
+    .brandon-benefield {
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+}
