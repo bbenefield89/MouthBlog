@@ -1,4 +1,4 @@
-require([ 'ajax_requests', 'input_validation' ], function (aR, iV) {
+require([ 'ajax_requests' ], function (aR) {
   /*********************
   ** GLOBAL VARIABLES **
   *********************/
@@ -208,8 +208,6 @@ require([ 'ajax_requests', 'input_validation' ], function (aR, iV) {
         
         ajaxRequests.returnCurrentPostComments(`post_id=${ postID }`)
           .then(data => {
-            console.log(data);
-            
             commentsContainer.innerHTML = data.map(d => {
                 return `<div class="post-modal-comment mb-4">
                           <div class="post-modal-comment-header mb-2">
@@ -299,45 +297,59 @@ require([ 'ajax_requests', 'input_validation' ], function (aR, iV) {
     submitPostBtn.addEventListener('click', e => {
       e.preventDefault();
       
-      ajaxRequests.submitPost('http://localhost/mouthblog/ajax/submit_post.ajax.php',
-        `id=${submitPostID.value}&name=${submitPostName.value}&content=${submitPostContent.value}`)
-      .then(() => {
-        ajaxRequests.returnNewestPost('http://localhost/mouthblog/api/newest_post.php')
-          .then(data => {
-            const newPost = document.createElement('div');
-            
-            newPost.setAttribute('class', 'row post-container');
-            newPost.innerHTML = `
-                                <article class="col-10 offset-1" data-toggle="modal" data-target="#exampleModal">
-                                  <h2 class="h2">${ data.user_name }</h2>
-                                  <small>${ data.date_created }</small>
-                                  
-                                  <form action="//localhost/mouthblog/blog.php" method="POST">
-                                    <button class="btn btn-danger" name="delete_post" type="submit">DELETE</button>
-                                    <input id="delete-post-id" name="post_id" type="hidden" value="${ data.id }">
-                                    <input id="delete-post-user-id" name="user_id" type="hidden" value="${ data.user_id }">
-                                  </form>
-                                  
-                                  <hr>
-                                  <p class="lead">${ data.content }</p>
-                                  <hr>
-                                  
-                                  <form class="blog-post-interactions">
-                                    <i class="far fa-comment-alt fa-lg" data-toggle="modal" data-target="#exampleModal"></i>
-                                    <small class="mr-3">${ data.comment_count }</small>
-                                    <button class="heart-post-button" type="submit" name="heart_post_button"><i class="fas fa-heart fa-lg"></i></button>
-                                    <small>${ data.heart_count }</small>
-                                    <input name="heart_count" type="hidden" value="${ data.heart_count }">
-                                    <input name="post_id" type="hidden" value="${ data.id }">
-                                    <input name="user_id" type="hidden" value="${ data.user_id }">
-                                  </form>
-                                  
-                                </article>
-            `;
-            
-            displayPostWrapper.prepend(newPost);
-          }); // then
-      }); // then
+      const formGroup = document.querySelector('.form-group');
+      const newSubmitPostError = document.createElement('small');
+      
+      newSubmitPostError.setAttribute('class', 'text-danger submit-post-error');
+      newSubmitPostError.innerText = 'Please add some content before submitting';
+      
+      if (submitPostContent.value !== '') {
+        const submitPostError = document.querySelector('.submit-post-error');
+        
+        submitPostError.remove();
+      
+        ajaxRequests.submitPost('http://localhost/mouthblog/ajax/submit_post.ajax.php',
+          `id=${submitPostID.value}&name=${submitPostName.value}&content=${submitPostContent.value}`)
+        .then(() => {
+          ajaxRequests.returnNewestPost('http://localhost/mouthblog/api/newest_post.php')
+            .then(data => {
+              const newPost = document.createElement('div');
+              
+              newPost.setAttribute('class', 'row post-container');
+              newPost.innerHTML = `
+                                  <article class="col-10 offset-1" data-toggle="modal" data-target="#exampleModal">
+                                    <h2 class="h2">${ data.user_name }</h2>
+                                    <small>${ data.date_created }</small>
+                                    
+                                    <form action="//localhost/mouthblog/blog.php" method="POST">
+                                      <button class="btn btn-danger" name="delete_post" type="submit">DELETE</button>
+                                      <input id="delete-post-id" name="post_id" type="hidden" value="${ data.id }">
+                                      <input id="delete-post-user-id" name="user_id" type="hidden" value="${ data.user_id }">
+                                    </form>
+                                    
+                                    <hr>
+                                    <p class="lead">${ data.content }</p>
+                                    <hr>
+                                    
+                                    <form class="blog-post-interactions">
+                                      <i class="far fa-comment-alt fa-lg" data-toggle="modal" data-target="#exampleModal"></i>
+                                      <small class="mr-3">${ data.comment_count }</small>
+                                      <button class="heart-post-button" type="submit" name="heart_post_button"><i class="fas fa-heart fa-lg"></i></button>
+                                      <small>${ data.heart_count }</small>
+                                      <input name="heart_count" type="hidden" value="${ data.heart_count }">
+                                      <input name="post_id" type="hidden" value="${ data.id }">
+                                      <input name="user_id" type="hidden" value="${ data.user_id }">
+                                    </form>
+                                    
+                                  </article>
+              `;
+              
+              displayPostWrapper.prepend(newPost);
+            }); // then
+        }); // then
+      } else {
+          formGroup.append(newSubmitPostError);
+      }
     }); // click event
     
     // SUBMIT NEW COMMENT
@@ -348,43 +360,51 @@ require([ 'ajax_requests', 'input_validation' ], function (aR, iV) {
       const commentUserID   = document.querySelector('.post-modal-comment-user-id').value;
       const commentUsername = document.querySelector('.post-modal-comment-username').value;
       const commentContent  = document.querySelector('.post-modal-comment-content').value;
+      const newCommentError = document.querySelector('.new-comment-error');
       
-      ajaxRequests.submitComment('//localhost/mouthblog/ajax/submit_comment.ajax.php',
-        `post_id=${ postID }&user_id=${ commentUserID }&username=${ commentUsername }&comment_content=${ commentContent }`)
-        .then(() => {
-          const nonModalPostForm = document.querySelectorAll('.blog-post-interactions');
-          
-          for (let i = 0; i < nonModalPostForm.length; i++) {
-            if (nonModalPostForm[i].children[5].value === postID) {
-              const commentCountText = nonModalPostForm[i].children[1];
-              let commentCountNum = Number(commentCountText.innerText);
-              
-              commentCountNum++;
-              
-              commentCountText.innerText = commentCountNum;
+      if (commentContent !== '') {
+        newCommentError.setAttribute('class', 'text-danger new-comment-error display-none');
+        console.log(commentContent);
+        
+        ajaxRequests.submitComment('//localhost/mouthblog/ajax/submit_comment.ajax.php',
+          `post_id=${ postID }&user_id=${ commentUserID }&username=${ commentUsername }&comment_content=${ commentContent }`)
+          .then(() => {
+            const nonModalPostForm = document.querySelectorAll('.blog-post-interactions');
+            
+            for (let i = 0; i < nonModalPostForm.length; i++) {
+              if (nonModalPostForm[i].children[5].value === postID) {
+                const commentCountText = nonModalPostForm[i].children[1];
+                let commentCountNum = Number(commentCountText.innerText);
+                
+                commentCountNum++;
+                
+                commentCountText.innerText = commentCountNum;
+              }
             }
-          }
-          
-          ajaxRequests.returnNewestComment('//localhost/mouthblog/api/newest_comment.php')
-            .then(data => {
-              
-              const modalCommentsWrapper = document.querySelector('.post-modal-comments-wrapper');
-              const newComment = document.createElement('div');
-              
-              newComment.setAttribute('class', 'post-modal-comment mb-4');
-              newComment.innerHTML = `
-                                      <div class="post-modal-comment-header mb-2">
-                                        <p class="mb-0">${ data.username }</p>
-                                        <small>${ data.date_created }</small>
-                                      </div>
-                                      <div class="post-modal-comment-content">
-                                        <p>${ data.comment_content }</p>
-                                      </div>
-              `;
-              
-              modalCommentsWrapper.prepend(newComment);
-            }); // then
-        }); // then
+            
+            ajaxRequests.returnNewestComment('//localhost/mouthblog/api/newest_comment.php')
+              .then(data => {
+                
+                const modalCommentsWrapper = document.querySelector('.post-modal-comments-wrapper');
+                const newComment = document.createElement('div');
+                
+                newComment.setAttribute('class', 'post-modal-comment mb-4');
+                newComment.innerHTML = `
+                                        <div class="post-modal-comment-header mb-2">
+                                          <p class="mb-0">${ data.username }</p>
+                                          <small>${ data.date_created }</small>
+                                        </div>
+                                        <div class="post-modal-comment-content">
+                                          <p>${ data.comment_content }</p>
+                                        </div>
+                `;
+                
+                modalCommentsWrapper.prepend(newComment);
+              }); // then
+          }); // then
+        } else {
+            newCommentError.setAttribute('class', 'text-danger new-comment-error');
+        }
     }); // click
     
     
