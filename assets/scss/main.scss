@@ -11,7 +11,12 @@ body {
   // font-family: 'Varela Round', sans-serif;
   // font-family: 'Happy Monkey';
   
+  .display-none {
+    display: none;
+  }
+  
   @import 'header';
   @import 'index';
   @import 'blog_roll';
+  @import 'footer';
 }

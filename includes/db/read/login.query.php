@@ -13,7 +13,7 @@ class Login extends Connection {
     );
     
     // check if EMAIL exists
-    if ($result) {
+    if ($result && $email !== '') {
       $row             = $query->fetch(PDO::FETCH_OBJ);
       $id              = htmlentities($row->id, ENT_QUOTES, 'ISO-8859-15');
       $name            = htmlentities($row->name, ENT_QUOTES, 'ISO-8859-15');
@@ -25,13 +25,11 @@ class Login extends Connection {
         $_SESSION['id']    = htmlentities($id, ENT_QUOTES, 'ISO-8859-15');
         $_SESSION['name']  = htmlentities($name, ENT_QUOTES, 'ISO-8859-15');
         $_SESSION['email'] = htmlentities($email, ENT_QUOTES, 'ISO-8859-15');
-        
-        header('Location: blog_roll.php');
       } else {
-        header('Location: index.php');
+          exit('E-mail and or password are incorrect');
       }
     } else {
-      echo 'THAT EMAIL ADDRESS DOES NOT EXIST';
+        exit('E-mail and or password are incorrect');
     }
   }
 }
