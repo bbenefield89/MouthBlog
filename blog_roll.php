@@ -78,6 +78,7 @@
     <form action="<?php htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, 'ISO-8859-15'); ?>" class="post-modal-add-comment-form" method="POST">
       <h4 class="h6 mb-3">Add a comment</h4>
       <textarea class="mb-3 post-modal-comment-content" name="comment_content" required></textarea>
+      <small class="text-danger new-comment-error display-none">Please add some content before submitting</small>
       <input class="post-modal-post-id" name="post_id" type="hidden" value="">
       <input class="post-modal-comment-user-id" name="user_id" type="hidden" value="<?php echo $id; ?>">
       <input class="post-modal-comment-username" name="username" type="hidden" value="<?php echo $name; ?>">
