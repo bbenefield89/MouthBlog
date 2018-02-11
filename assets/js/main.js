@@ -3,7 +3,6 @@ require([ 'ajax_requests' ], function (aR) {
   ** GLOBAL VARIABLES **
   *********************/
   const ajaxRequests = new aR.AJAXRequests;
-  // const inputValidation = iV.inputValidation();
   
   const loginBtn          = document.querySelector('#login-button');
   const createAccountForm = document.querySelector('.create_account_form');
@@ -61,7 +60,7 @@ require([ 'ajax_requests' ], function (aR) {
       ajaxRequests.login(`login_email=${ loginEmail.value }&login_password=${ loginPassword.value }`)
         .then(data => {
           if (data !== 'E-mail and or password are incorrect') {
-            window.location.replace('//localhost/mouthblog/blog_roll.php');
+            window.location.replace('/blog_roll.php');
           } else {
             const loginForm = document.querySelector('#login-form');
             const errorText = document.createElement('small');
@@ -160,7 +159,7 @@ require([ 'ajax_requests' ], function (aR) {
       };
       
       // UNHEART POST
-      const unHeartPost = (icon, formPath, idPath, userPath, url = '//localhost/mouthblog/ajax/unheart_post.ajax.php') => {
+      const unHeartPost = (icon, formPath, idPath, userPath, url = '/ajax/unheart_post.ajax.php') => {
         e.preventDefault();
         
         const heartIcon = e.path[icon];
@@ -183,7 +182,7 @@ require([ 'ajax_requests' ], function (aR) {
       };
       
       // HEARTFUNC
-      const heartFunc = (icon, formPath, url = '//localhost/mouthblog/ajax/heart_post.ajax.php') => {
+      const heartFunc = (icon, formPath, url = '/ajax/heart_post.ajax.php') => {
         e.preventDefault();
         const heartIcon = e.path[icon];
         let heartCount = e.path[formPath].children[3];
@@ -237,8 +236,8 @@ require([ 'ajax_requests' ], function (aR) {
         
         row.style.opacity = '0';
         
-        ajaxRequests.deletePostPromise('http://localhost/mouthblog/ajax/delete_post.ajax.php', `id=${postID}`);
-        ajaxRequests.unHeartPost('//localhost/mouthblog/ajax/unheart_post.ajax.php', `post_id=${ postID }&user_id=${ userID }`);
+        ajaxRequests.deletePostPromise('/ajax/delete_post.ajax.php', `id=${postID}`);
+        ajaxRequests.unHeartPost('/ajax/unheart_post.ajax.php', `post_id=${ postID }&user_id=${ userID }`);
         
         setTimeout(() => {
           row.remove();
@@ -306,12 +305,12 @@ require([ 'ajax_requests' ], function (aR) {
       if (submitPostContent.value !== '') {
         const submitPostError = document.querySelector('.submit-post-error');
         
-        submitPostError.remove();
+        submitPostError ? submitPostError.remove() : null;
       
-        ajaxRequests.submitPost('http://localhost/mouthblog/ajax/submit_post.ajax.php',
+        ajaxRequests.submitPost('/ajax/submit_post.ajax.php',
           `id=${submitPostID.value}&name=${submitPostName.value}&content=${submitPostContent.value}`)
         .then(() => {
-          ajaxRequests.returnNewestPost('http://localhost/mouthblog/api/newest_post.php')
+          ajaxRequests.returnNewestPost('/api/newest_post.php')
             .then(data => {
               const newPost = document.createElement('div');
               
@@ -321,7 +320,7 @@ require([ 'ajax_requests' ], function (aR) {
                                     <h2 class="h2">${ data.user_name }</h2>
                                     <small>${ data.date_created }</small>
                                     
-                                    <form action="//localhost/mouthblog/blog.php" method="POST">
+                                    <form action="/blog.php" method="POST">
                                       <button class="btn btn-danger" name="delete_post" type="submit">DELETE</button>
                                       <input id="delete-post-id" name="post_id" type="hidden" value="${ data.id }">
                                       <input id="delete-post-user-id" name="user_id" type="hidden" value="${ data.user_id }">
@@ -366,7 +365,7 @@ require([ 'ajax_requests' ], function (aR) {
         newCommentError.setAttribute('class', 'text-danger new-comment-error display-none');
         console.log(commentContent);
         
-        ajaxRequests.submitComment('//localhost/mouthblog/ajax/submit_comment.ajax.php',
+        ajaxRequests.submitComment('/ajax/submit_comment.ajax.php',
           `post_id=${ postID }&user_id=${ commentUserID }&username=${ commentUsername }&comment_content=${ commentContent }`)
           .then(() => {
             const nonModalPostForm = document.querySelectorAll('.blog-post-interactions');
@@ -382,7 +381,7 @@ require([ 'ajax_requests' ], function (aR) {
               }
             }
             
-            ajaxRequests.returnNewestComment('//localhost/mouthblog/api/newest_comment.php')
+            ajaxRequests.returnNewestComment('/api/newest_comment.php')
               .then(data => {
                 
                 const modalCommentsWrapper = document.querySelector('.post-modal-comments-wrapper');

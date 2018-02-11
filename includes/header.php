@@ -1,3 +1,9 @@
+<?php
+
+  include('includes/env.php');
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,7 +31,7 @@
     <?php if (isset($_SESSION['email'])) : ?>
 
       <div class="mx-auto">
-        <form action="/mouthblog/logout.php" method="POST">
+        <form action="<?php echo $env; ?>logout.php" method="POST">
           <button class="btn btn-danger" type="submit" name="logout_button">Log out</button>
         </form>
       </div>
@@ -40,13 +46,13 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <form action="<?php htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, 'ISO-8859-15'); ?>" id="login-form" method="POST">
           <div class="form-group">
-            <input class="form-control from-control-lg" type="text" name="login_email"
-            placeholder="Email Address">
+            <input class="form-control from-control-lg" type="email" name="login_email"
+            placeholder="Email Address" required>
           </div>
 
           <div class="form-group">
-            <input class="form-control from-control-lg" type="text" name="login_password"
-            placeholder="Email Address">
+            <input class="form-control from-control-lg" type="password" name="login_password"
+            placeholder="Password" required>
           </div>
           <button class="btn" id="login-button" type="submit" name="login_button">Log in</button>
         </form>

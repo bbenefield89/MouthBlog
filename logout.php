@@ -1,13 +1,15 @@
 <?php
 
-// check if cookie was set for user
-if (isset($_COOKIE[ session_name() ])) {
-  // clear cookie
-  setcookie(session_name(), '' , time()-86400, '/');
-}
+  session_start();
 
-// unset and destroy session
-session_unset();
-session_destroy();
+  // check if cookie was set for user
+  if (isset($_COOKIE[ session_name() ])) {
+    // clear cookie
+    setcookie(session_name(), '' , time()-86400, '/');
+  }
 
-header('Location: index.php');
+  // unset and destroy session
+  session_unset();
+  session_destroy();
+
+  header('Location: index.php');

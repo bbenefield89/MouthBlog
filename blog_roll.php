@@ -28,7 +28,7 @@
   <div class="row">
     <div class="col-10 offset-1">
       
-      <div class="content-wrapper row">
+      <div class="content-wrapper row mx-auto">
         <header class="col-10 offset-1 col-md-4 offset-md-4 mb-5">
           <h1 class="h1">Welcome back, <?php echo $name; ?>!</h1>
           <p class="lead">What's on your mind?</p>

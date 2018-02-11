@@ -1,7 +1,7 @@
 <?php
 
   session_start();
-
+  
   if (isset($_SESSION['email'])) {
     header('Location: blog_roll.php');
   }
@@ -34,7 +34,7 @@
 
 ?>
 
-<main class="index-page container">
+<main class="index-page container my-5">
   
   <div class="row">
     <section class="col-10 offset-1">
