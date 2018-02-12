@@ -1,8 +1,9 @@
-require([ 'ajax_requests' ], function (aR) {
+require([ 'ajax_requests', 'validation' ], function (aR, iV) {
   /*********************
   ** GLOBAL VARIABLES **
   *********************/
-  const ajaxRequests = new aR.AJAXRequests;
+  const ajaxRequests    = new aR.AJAXRequests;
+  const inputValidation = new iV.inputValidation;
   
   const loginBtn          = document.querySelector('#login-button');
   const createAccountForm = document.querySelector('.create_account_form');
